@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-st.title('This is for project initiation')
+
+st.title("Page - 1")
 
 
 # 1. as Side menu
@@ -22,3 +23,4 @@ if selected == "Project":
 
 if selected == "Page":
     st.title(f"You select {selected}")
+
