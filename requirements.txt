@@ -11,6 +11,7 @@ contourpy==1.0.7
 cycler==0.11.0
 decorator==5.1.1
 entrypoints==0.4
+et-xmlfile==1.1.0
 Faker==17.0.0
 favicon==0.7.0
 fonttools==4.38.0
@@ -32,6 +33,7 @@ matplotlib==3.7.0
 mdurl==0.1.2
 more-itertools==9.0.0
 numpy==1.24.2
+openpyxl==3.1.1
 packaging==23.0
 pandas==1.5.3
 Pillow==9.4.0
@@ -73,4 +75,5 @@ tzlocal==4.2
 urllib3==1.26.14
 validators==0.20.0
 watchdog==2.2.1
+xlrd==2.0.1
 zipp==3.14.0
