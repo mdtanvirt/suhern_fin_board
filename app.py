@@ -85,8 +85,6 @@ with st.container():
             st.success("Here Bar chart will be placeed")
         
         with col_pai_chart:
-            st.write("This is Pie Chart")
-            st.success("Here pie chart will be placeed")
             medal_type = st.selectbox('', ['Main account', 'Amount', 'Party name'])
 
             fig = px.pie(data, values=medal_type, names='Posting type',
