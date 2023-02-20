@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import plotly_express as px
+import altair as alt
 from streamlit_option_menu import option_menu
 from streamlit_toggle import st_toggle_switch
 from streamlit_extras.dataframe_explorer import dataframe_explorer
@@ -81,8 +82,9 @@ with st.container():
         col_barChart, col_pai_chart = st.columns(2)
 
         with col_barChart:
-            st.write("This is Barchart")
-            st.success("Here Bar chart will be placeed")
+            columns = ['Posting type', 'Account entry description', 'Currency']
+            bar_chart_df = data.filter(columns)
+            st.bar_chart(bar_chart_df)
         
         with col_pai_chart:
             medal_type = st.selectbox('', ['Main account', 'Amount', 'Party name'])
