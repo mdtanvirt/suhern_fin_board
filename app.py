@@ -84,8 +84,8 @@ with st.container():
             st.success("Here Bar chart will be placeed")
         
         with col_pai_chart:
-            st.write("This is Pi Chart")
-            st.success("Here pi chart will be placeed")
+            st.write("This is Pie Chart")
+            st.success("Here pie chart will be placeed")
 
         st.subheader("Data Grid")
         columns = ['Journal number', 'Date', 'Voucher', 'Posting type', 'Account entry description', 'Main account', 'Main account name', 'Amount', 'Amount in transaction currency', 'Currency', 'Party name']
