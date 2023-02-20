@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
+import plotly_express as px
 from streamlit_option_menu import option_menu
 from streamlit_toggle import st_toggle_switch
 from streamlit_extras.dataframe_explorer import dataframe_explorer
@@ -86,6 +87,13 @@ with st.container():
         with col_pai_chart:
             st.write("This is Pie Chart")
             st.success("Here pie chart will be placeed")
+            medal_type = st.selectbox('', ['Main account', 'Amount', 'Party name'])
+
+            fig = px.pie(data, values=medal_type, names='Posting type',
+                 title=f'number of {medal_type} medals',
+                 height=300, width=200)
+            fig.update_layout(margin=dict(l=20, r=20, t=30, b=0),)
+            st.plotly_chart(fig, use_container_width=True)
 
         st.subheader("Data Grid")
         columns = ['Journal number', 'Date', 'Voucher', 'Posting type', 'Account entry description', 'Main account', 'Main account name', 'Amount', 'Amount in transaction currency', 'Currency', 'Party name']
