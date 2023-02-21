@@ -3,9 +3,11 @@ import numpy as np
 import pandas as pd
 import plotly_express as px
 import altair as alt
+from st_vizzu import *
 from streamlit_option_menu import option_menu
 from streamlit_toggle import st_toggle_switch
 from streamlit_extras.dataframe_explorer import dataframe_explorer
+from ipyvizzu import Chart, Data, Config, Style
 
 st.set_page_config(layout="wide")
 
@@ -96,10 +98,55 @@ with st.container():
             st.plotly_chart(fig, use_container_width=True)
 
         st.subheader("Data Grid")
-        columns = ['Journal number', 'Date', 'Voucher', 'Posting type', 'Account entry description', 'Main account', 'Main account name', 'Amount', 'Amount in transaction currency', 'Currency', 'Party name']
-        new_df = data.filter(columns)
-        filtered_df = dataframe_explorer(new_df)
-        st.dataframe(new_df, use_container_width=True)
+        col_ipyv, col_grid_data = st.columns(2)
+
+        with col_ipyv:
+            # ipyv implementation
+            # Load Data
+            df = pd.read_excel("Dummy DataSet.xlsx")
+            # Create ipyvizzu Object with the DataFrame
+            obj = create_vizzu_obj(df)
+
+            # Preset plot usage. Preset plots works directly with DataFrames.
+            bar_obj = bar_chart(df,
+                        x = "Posting type", 
+                        y = "Amount",
+                        title= "Using ipyvizzu`"
+                        )
+
+            # Animate with defined arguments 
+            anim_obj = beta_vizzu_animate( bar_obj,
+                x = "Voucher",
+                y =  ["Amount", "Posting type"],
+                title = "Animate with beta_vizzu_animate () function",
+                label= "Popularity",
+                color="Voucher",
+                legend="color",
+                sort="byValue",
+                reverse=True,
+                align="center",
+                split=False,
+            )
+
+            # Animate with general dict based arguments 
+            _dict = {"size": {"set": "Popularity"}, 
+                "geometry": "circle",
+                "coordSystem": "polar",
+                "title": "Animate with vizzu_animate () function",
+                }
+            anim_obj2 = vizzu_animate(anim_obj,_dict)
+
+            # Visualize within Streamlit
+            with st.container(): # Maintaining the aspect ratio
+                st.button("Animate")
+                vizzu_plot(anim_obj2)
+            # end of ipyv implementation
+
+        with col_grid_data:
+            columns = ['Journal number', 'Date', 'Voucher', 'Posting type', 'Account entry description', 'Main account', 'Main account name', 'Amount', 'Amount in transaction currency', 'Currency', 'Party name']
+            new_df = data.filter(columns)
+            filtered_df = dataframe_explorer(new_df)
+            st.dataframe(new_df, use_container_width=True)
 
     with tab_raw_data:
         st.subheader("Raw data")
